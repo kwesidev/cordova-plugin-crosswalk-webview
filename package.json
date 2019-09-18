@@ -45,5 +45,10 @@
   "bugs": {
     "url": "https://crosswalk-project.org/jira"
   },
+
+  "dependencies": {
+    "q": "^1.5.1",
+    "elementtree": "^0.1.7"
+  },
   "homepage": "https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview"
 }
