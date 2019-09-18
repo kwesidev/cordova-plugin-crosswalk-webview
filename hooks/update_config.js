@@ -13,9 +13,9 @@ module.exports = function(context) {
     }
 
     /** @external */
-    var fs = context.require('fs'),
-        path = context.require('path'),
-        et = context.require('elementtree');
+    var fs = require('fs'),
+        path = require('path'),
+        et = require('elementtree');
 
     /** @defaults */
     var xwalkVariables = {},
