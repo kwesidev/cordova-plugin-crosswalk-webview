@@ -166,14 +166,15 @@ cdvPluginPostBuildExtras.add({
         return
     }
     android.applicationVariants.all { variant ->
-    def variantName = variant.name.capitalize()
-    def mergeTask = tasks["merge${variantName}Assets"]
-    def processTask = tasks["process${variantName}Resources"]
-    def outFile = new File(file(mergeTask.outputDir), "xwalk-command-line")
-    def newTask = project.task("createXwalkCommandLineFile${variantName}") doLast {
-        mkdir(mergeTask.outputDir)
-        outFile.write("xwalk ${xwalkCommandLine}\n")
+        def variantName = variant.name.capitalize()
+        def mergeTask = tasks["merge${variantName}Assets"]
+        def processTask = tasks["process${variantName}Resources"]
+        def outFile = new File(file(mergeTask.outputDir), "xwalk-command-line")
+        def newTask = project.task("createXwalkCommandLineFile${variantName}") doLast {
+            mkdir(mergeTask.outputDir)
+            outFile.write("xwalk ${xwalkCommandLine}\n")
+        }
+        newTask.dependsOn(mergeTask)
+        processTask.dependsOn(newTask)
     }
-    newTask.dependsOn(mergeTask)
-    processTask.dependsOn(newTask)
 })
